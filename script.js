@@ -1,6 +1,23 @@
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
-// Array of special characters to be included in password
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// special character arrays
 var specialCharacters = [
+  '>',
+  '<',
+  '=',
   '@',
   '%',
   '+',
@@ -26,10 +43,10 @@ var specialCharacters = [
   '.'
 ];
 
-// Array of numeric characters to be included in password
+// Numeric character arrays 
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-// Array of lowercase characters to be included in password
+// Lowercase characterarrays 
 var lowerCasedCharacters = [
   'a',
   'b',
@@ -59,7 +76,7 @@ var lowerCasedCharacters = [
   'z'
 ];
 
-// Array of uppercase characters to be included in password
+// Uppercase character arrays
 var upperCasedCharacters = [
   'A',
   'B',
@@ -89,9 +106,9 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Function to prompt user for password options
+// Function to notify user for password options
 function getPasswordOptions() {
-  // Variable to store length of password from user input
+  // Variable to store password length 
   var length = parseInt(
     prompt('How many characters would you like your password to contain?')
   );
@@ -102,39 +119,39 @@ function getPasswordOptions() {
     return;
   }
 
-  // Conditional statement to check if password length is at least 8 characters long. Prompts end if this evaluates false
+  // Conditional statement to check if password length is at least 8 characters long. Prompts incorrect if it evaluates false
   if (length < 8) {
     alert('Password length must be at least 8 characters');
     return;
   }
 
-  // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
+  // Conditional statement to check if password length is less than 128 characters long. Prompts incorrect if it evaluates false
   if (length > 128) {
     alert('Password length must less than 129 characters');
     return;
   }
 
-  // Variable to store boolean regarding the inclusion of special characters
+  // Variable to store boolean regarding for special characters
   var hasSpecialCharacters = confirm(
     'Click OK to confirm including special characters.'
   );
 
-  // Variable to store boolean regarding the inclusion of numeric characters
+  // Variable to store boolean for numeric characters
   var hasNumericCharacters = confirm(
     'Click OK to confirm including numeric characters.'
   );
 
-  // Variable to store boolean regarding the inclusion of lowercase characters
+  // Variable to store boolean for lowercase characters
   var hasLowerCasedCharacters = confirm(
     'Click OK to confirm including lowercase characters.'
   );
 
-  // Variable to store boolean regarding the inclusion of uppercase characters
+  // Variable to store boolean for uppercase characters
   var hasUpperCasedCharacters = confirm(
     'Click OK to confirm including uppercase characters.'
   );
 
-  // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+  // Conditional statement to check if any character is omitted. Password generator prompts incorrect if all four variables evaluate to false
   if (
     hasSpecialCharacters === false &&
     hasNumericCharacters === false &&
@@ -165,10 +182,10 @@ function getRandom(arr) {
   return randElement;
 }
 
-// Function to generate password with user input
+// Function for generating password 
 function generatePassword() {
   var options = getPasswordOptions();
-  // Variable to store password as it's being concatenated
+  // Variable to store concatenated password
   var result = [];
 
   // Array to store types of characters to include in password
